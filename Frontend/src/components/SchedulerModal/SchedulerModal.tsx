@@ -68,7 +68,6 @@ const SchedulerModal: React.FC = () => {
     if (!edit) setSave(true);
     else setLocalEdit(true);
     setOpenModal(false);
-    //setNewData({ ...newData, Title: "", Description: "", Subject: "" });
   };
 
   const handleInputChange = (

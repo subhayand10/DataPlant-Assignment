@@ -43,7 +43,6 @@ border: 1px;
 display: flex;
 align-items: center;
 justify-content: space-between;
-/* gap:2rem; */
 margin-bottom: 0.5rem;
 
 }
@@ -64,13 +63,6 @@ text-align: center;
 .Weekdays div:hover {
     cursor: pointer;
 }
-
-/* .ContainerAll input{
-width: 216px;
-height: 32px;
-border-radius: 4px;
-border: 1px;
-} */
 
 .ContainerAll input{
 width: 216px;
@@ -99,18 +91,6 @@ text-align: left;
 
 }
 
-/* .TitleContainer{
-display: flex;
-align-items: center;
-justify-content: space-between;
-width: 304px;
-height: 32px;
-top: 161px;
-left: 1084px;
-border-radius: 4px;
-border: 1px;
-
-} */
 
 .actions{
 position: absolute;
