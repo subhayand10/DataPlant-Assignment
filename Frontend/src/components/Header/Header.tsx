@@ -8,8 +8,7 @@ import axios from "axios";
 import backend_endpoint from "../../../config";
 
 const Header: React.FC = () => {
-  const {setOpenModal, setSchedules } =
-    useContext(Context) ;
+  const {setOpenModal, setSchedules } =useContext(Context)! ;
 
   const [searchText, setSearchText] = useState<string>("");
   const URL: string = `${backend_endpoint}/schedules?search=${searchText}`;

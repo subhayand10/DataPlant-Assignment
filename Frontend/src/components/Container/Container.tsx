@@ -6,6 +6,14 @@ import deleteImage from "../../assets/delete.png";
 import Context from "../../Context/Context";
 import backend_endpoint from "../../../config"
 
+interface CustomImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
+  name?: string;
+}
+
+const CustomImage: React.FC<CustomImageProps> = ({ name, ...rest }) => (
+  <img {...rest} alt={rest.alt}  name={name} />
+);
+
 const Container: React.FC = () => {
   const {
     setEdit,
@@ -14,7 +22,7 @@ const Container: React.FC = () => {
     setSchedules,
     setSelectedId,
     selectedId,
-  } = useContext(Context);
+  } = useContext(Context)!;
 
   const [remove, setRemove] = useState<boolean>(false);
 
@@ -49,16 +57,20 @@ const Container: React.FC = () => {
     if (remove) deleteSchedules();
   }, [remove]);
 
-  const handleEdit = (e:any) => {
-    console.log(e.target.name);
-    setSelectedId(e.target.name);
+  const handleEdit = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const target = e.target as HTMLImageElement;
+    const name = target.getAttribute("name") ?? "";
+    console.log(name);
+    setSelectedId(name);
     setOpenModal(true);
     setEdit(true);
   };
 
-  const handleDelete = (e:any) => {
-    console.log(e.target.name);
-    setSelectedId(e.target.name);
+  const handleDelete = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const target = e.target as HTMLImageElement;
+    const name = target.getAttribute("name") ?? "";
+    console.log(name);
+    setSelectedId(name);
     setRemove(true);
   };
 
@@ -83,7 +95,7 @@ const Container: React.FC = () => {
               <td>{`${schedule.Frequency} at ${schedule.Time}`}</td>
               <td>
                 <button onClick={handleEdit}>
-                  <img
+                  <CustomImage
                     src={editImage}
                     name={schedule.id}
                     alt="edit"
@@ -91,7 +103,7 @@ const Container: React.FC = () => {
                   />
                 </button>
                 <button onClick={handleDelete}>
-                  <img src={deleteImage} name={schedule.id} alt="delete" />
+                  <CustomImage src={deleteImage} name={schedule.id} alt="delete" />
                 </button>
               </td>
             </tr>

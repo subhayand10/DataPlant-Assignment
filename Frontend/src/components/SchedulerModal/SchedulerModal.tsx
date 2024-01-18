@@ -4,12 +4,29 @@ import Context from "../../Context/Context";
 import axios from "axios";
 import backend_endpoint from "../../../config";
 
+interface NewData {
+  Title: string;
+  Description: string;
+  Subject: string;
+  Frequency: string;
+  Time: string;
+}
+
+interface Weekdays {
+  Sunday: boolean;
+  Monday: boolean;
+  Tuesday: boolean;
+  Wednesday: boolean;
+  Thursday: boolean;
+  Friday: boolean;
+  Saturday: boolean;
+}
 
 const SchedulerModal: React.FC = () => {
   const { edit, setEdit, setOpenModal, setSchedules, selectedId } =
-    useContext(Context);
+    useContext(Context) !;
 
-  const [newData, setNewData] = useState({
+  const [newData, setNewData] = useState<NewData>({
     Title: "",
     Description: "",
     Subject: "",
@@ -17,7 +34,7 @@ const SchedulerModal: React.FC = () => {
     Time: "10:00 AM",
   });
 
-  const [weekdays, setWeekdays] = useState({
+  const [weekdays, setWeekdays] = useState<Weekdays>({
     Sunday: false,
     Monday: false,
     Tuesday: false,
@@ -27,15 +44,23 @@ const SchedulerModal: React.FC = () => {
     Saturday: false,
   });
 
-  const [save, setSave] = useState(false);
-  const [frequency, setFrequency] = useState("weekly");
-  const [localEdit, setLocalEdit] = useState(false);
+  const [save, setSave] = useState<boolean>(false);
+  const [frequency, setFrequency] = useState<string>("weekly");
+  const [localEdit, setLocalEdit] = useState<boolean>(false);
 
   const handleCancel = () => {
     setOpenModal(false);
     setEdit(false);
     setSave(false);
-    setWeekdays({});
+    setWeekdays({
+      Sunday: false,
+      Monday: false,
+      Tuesday: false,
+      Wednesday: false,
+      Thursday: false,
+      Friday: false,
+      Saturday: false,
+    });
     setNewData({ ...newData, Title: "", Description: "", Subject: "" });
   };
 
@@ -47,7 +72,9 @@ const SchedulerModal: React.FC = () => {
   };
 
   const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => {
     const [key, value] = [e.target.name, e.target.value];
     if (key === "Frequency") setFrequency(value);
@@ -90,8 +117,8 @@ const SchedulerModal: React.FC = () => {
   }, [save, localEdit]);
 
   function generateTimeOptions() {
-    const timeOptions = [];
-    const hours = [
+    const timeOptions: string[] = [];
+    const hours: string[] = [
       "12",
       "01",
       "02",
@@ -105,10 +132,10 @@ const SchedulerModal: React.FC = () => {
       "10",
       "11",
     ];
-    const period = ["AM", "PM"];
+    const period: string[] = ["AM", "PM"];
 
-    for (let h of hours) {
-      for (let p of period) {
+    for (const h of hours) {
+      for (const p of period) {
         timeOptions.push(h + ":00 " + p);
         timeOptions.push(h + ":30 " + p);
       }
@@ -121,11 +148,12 @@ const SchedulerModal: React.FC = () => {
   const frequencyOptions = ["Daily", "weekly", "monthly"];
 
   const handleWeekdays = (e: React.MouseEvent<HTMLDivElement>) => {
-    console.log(e.target.id);
+    const target = e.target as HTMLDivElement;
+    console.log(target.id);
     setWeekdays((prevWeekday) => {
       return {
         ...prevWeekday,
-        [e.target.id]: !prevWeekday[e.target.id],
+        [target.id]: !prevWeekday[target.id],
       };
     });
   };
@@ -149,7 +177,6 @@ const SchedulerModal: React.FC = () => {
         <p className="Title">Description</p>
         <textarea
           required
-          type="text"
           name="Description"
           value={newData.Description}
           onChange={handleInputChange}

@@ -4,10 +4,18 @@ import Context from "./Context";
 interface ContextProviderProps {
   children: ReactNode;
 }
+interface ScheduleItem {
+  id: string;
+  Title: string;
+  Description: string;
+  Subject: string;
+  Frequency: string;
+  Time: string;
+}
 
 
 const ContextProvider: React.FC<ContextProviderProps> = ({ children }) => {
-  const [schedules, setSchedules] = useState<any[]>([]); 
+  const [schedules, setSchedules] = useState<ScheduleItem[]>([]); 
   const [selectedId, setSelectedId] = useState<string>("");
   const [edit, setEdit] = useState<boolean>(false);
   const [openModal, setOpenModal] = useState<boolean>(false);

@@ -6,7 +6,7 @@ import SchedulerModal from "./components/SchedulerModal/SchedulerModal";
 import Context from "./Context/Context";
 
 const App: React.FC = () => {
-  const { edit, openModal } = useContext(Context);
+  const { edit = false, openModal = false } = useContext(Context) || {};
 
   return (
     <>
