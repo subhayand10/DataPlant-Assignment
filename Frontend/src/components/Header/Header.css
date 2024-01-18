@@ -1,0 +1,80 @@
+.Header{
+display: flex;
+flex-direction: column;
+}
+
+.Tab{
+width: 1440px;
+height: 40px;
+border: 1px 0px 1px 0px;
+border-style: solid;
+border-color: #D8D2DE;
+}
+
+.Filter{
+width: 1360px;
+height: 38px;
+border-radius: 4px;
+border: 1px;
+}
+
+.SearchBox{
+position:absolute;
+width: 300px;
+height: 38px;
+top: 108px;
+left: 96px;
+}
+
+.SearchBox img{
+position: relative;
+left:280px;
+bottom:30px
+}
+
+.SearchInput{
+height: 100%;
+width: 100%;
+border-radius: 4px;
+border: 1px;
+}
+
+.Add{
+cursor: pointer;
+position: absolute;
+width: 63px;
+height: 32px;
+top: 111px;
+left: 1393px;
+padding: 8px;
+border-radius: 4px;
+border: 1px;
+gap: 8px;
+background: linear-gradient(0deg, #391E5A, #391E5A);
+border: 1px solid #E4E4EE;
+color: #FFFFFF;
+font-size: 12px;
+font-weight: 600;
+line-height: 16px;
+letter-spacing: 0em;
+text-align: right;
+display: flex;
+
+}
+.Add img{
+width: 16px;
+height: 16px;
+border: 1.67px;
+
+}
+
+.TableContainer{
+position: absolute;
+width: 1360px;
+height: 281px;
+top: 177px;
+left: 96px;
+}
+
+
+

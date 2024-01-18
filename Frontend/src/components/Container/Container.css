@@ -1,0 +1,32 @@
+table {
+border-collapse: collapse;
+width: 100%;
+}
+
+th, td {
+border: none;
+text-align: left;
+padding: 8px;
+}
+
+thead{
+width: 1360px;
+height: 42px;
+border: 1px;
+}
+
+tr{
+width: 1360px;
+height: 60px;
+border-width: 0px 1px 1px 1px;
+border-style: solid;
+border-color: #3C1E5A1A;
+}
+
+button{
+cursor: pointer;
+background: transparent;
+border:none;
+padding: 0;
+}
+
