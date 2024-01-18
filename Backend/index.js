@@ -10,7 +10,7 @@ const schedulesRouter=require("./routes/schedules.routes")
 //use  routes middlewares
 app.use(
   cors({
-    origin: `http://localhost:${process.env.FRONTEND_PORT}`,
+    origin: `https://data-plant-assignment-rho.vercel.app/`,
     allowedHeaders: "Origin, X-Requested-With, Content-Type, Accept",
     credentials: true,
   })
