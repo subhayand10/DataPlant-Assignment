@@ -1,6 +1,3 @@
-//imports
-
-//let schedulesData = require("../data/data");
 function generateRandomId() {
   const timestamp = new Date().getTime().toString(36);
   const randomPart = Math.random().toString(36).substring(2, 5);
@@ -34,9 +31,7 @@ const getSchedules = async (req, res) => {
       res.status(200).json(filteredSchedules);
     }
     else{
-        //if (schedulesData.length) 
-        res.status(200).json(schedulesData);
-        //else res.status(404).send({ message: "No schedules found" });
+      res.status(200).json(schedulesData);
     }
   } catch (err) {
     res.sendStatus(500);

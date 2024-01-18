@@ -4,6 +4,7 @@ import axios from "axios";
 import editImage from "../../assets/edit.png";
 import deleteImage from "../../assets/delete.png";
 import Context from "../../Context/Context";
+import backend_endpoint from "../../../config"
 
 const Container: React.FC = () => {
   const {
@@ -20,7 +21,7 @@ const Container: React.FC = () => {
   useEffect(() => {
     async function getSchedules() {
       try {
-        const data = await axios.get(`http://localhost:8082/schedules`);
+        const data = await axios.get(`${backend_endpoint}/schedules`);
         console.log(data);
         setSchedules(data.data);
       } catch (error) {
@@ -36,7 +37,7 @@ const Container: React.FC = () => {
     async function deleteSchedules() {
       try {
         const data = await axios.delete(
-          `http://localhost:8082/schedules/${selectedId}`
+          `${backend_endpoint}/schedules/${selectedId}`
         );
         setRemove(false);
         setSchedules(data.data);

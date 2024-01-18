@@ -2,6 +2,7 @@ import { useState, useContext, useEffect } from "react";
 import "./SchedulerModal.css";
 import Context from "../../Context/Context";
 import axios from "axios";
+import backend_endpoint from "../../../config";
 
 
 const SchedulerModal: React.FC = () => {
@@ -58,10 +59,7 @@ const SchedulerModal: React.FC = () => {
     async function addSchedules() {
       try {
         console.log(newData)
-        const data = await axios.post(
-          `http://localhost:8082/schedules`,
-          newData
-        );
+        const data = await axios.post(`${backend_endpoint}/schedules`, newData);
         setNewData({ ...newData, Title: "", Description: "", Subject: "" });
         console.log(data.data);
         setSchedules(data.data);
@@ -74,7 +72,7 @@ const SchedulerModal: React.FC = () => {
     async function editSchedules() {
       try {
         const data = await axios.patch(
-          `http://localhost:8082/schedules/${selectedId}`,
+          `${backend_endpoint}/schedules/${selectedId}`,
           newData
         );
         setNewData({ ...newData, Title: "", Description: "", Subject: "" });
