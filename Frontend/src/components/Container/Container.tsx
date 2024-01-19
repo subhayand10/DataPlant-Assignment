@@ -5,6 +5,7 @@ import editImage from "../../assets/edit.png";
 import deleteImage from "../../assets/delete.png";
 import Context from "../../Context/Context";
 import backend_endpoint from "../../../config"
+import CircularProgress from "@mui/material/CircularProgress";
 
 interface CustomImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   name?: string;
@@ -25,13 +26,16 @@ const Container: React.FC = () => {
   } = useContext(Context)!;
 
   const [remove, setRemove] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     async function getSchedules() {
       try {
+        setLoading(true);
         const data = await axios.get(`${backend_endpoint}/schedules`);
         console.log(data);
         setSchedules(data.data);
+        setLoading(false)
       } catch (error) {
         console.log(error);
       }
@@ -75,6 +79,7 @@ const Container: React.FC = () => {
   };
 
   return (
+    <>
     <table>
       <thead>
         <tr>
@@ -103,7 +108,11 @@ const Container: React.FC = () => {
                   />
                 </button>
                 <button onClick={handleDelete}>
-                  <CustomImage src={deleteImage} name={schedule.id} alt="delete" />
+                  <CustomImage
+                    src={deleteImage}
+                    name={schedule.id}
+                    alt="delete"
+                  />
                 </button>
               </td>
             </tr>
@@ -111,6 +120,15 @@ const Container: React.FC = () => {
         })}
       </tbody>
     </table>
+    {loading ? (
+        <div className="Loading">
+          <p>Backend Spinning Up! Approx 15-20s to load.</p>
+          <CircularProgress color="secondary" />
+        </div>
+      ) : (
+        ""
+      )}
+    </>
   );
 };
 

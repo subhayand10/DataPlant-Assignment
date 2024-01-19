@@ -30,3 +30,16 @@ border:none;
 padding: 0;
 }
 
+.Loading{
+margin-top: 1rem;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+}
+
+.Loading p{
+font-weight: bold;
+}
+
+

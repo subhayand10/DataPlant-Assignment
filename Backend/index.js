@@ -8,6 +8,7 @@ const app = express();
 const schedulesRouter=require("./routes/schedules.routes")
 
 //use  routes middlewares
+//https://data-plant-assignment-rho.vercel.app
 app.use(
   cors({
     origin: `https://data-plant-assignment-rho.vercel.app`,
